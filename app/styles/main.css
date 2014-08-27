@@ -1,6 +1,25 @@
+/* Added by Trotyl*/
+.left {
+    left: 5px;
+}
+
+th {
+    text-align: center;
+}
+
+.side-space {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.vertical-space {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 /* Space out content a bit */
 body {
-  padding-top: 20px;
+  padding-top: 0px;
   padding-bottom: 20px;
 }
 
@@ -34,7 +53,7 @@ body {
 /* Customize container */
 @media (min-width: 768px) {
   .container {
-    max-width: 730px;
+    max-width: 1060px;
   }
 }
 .container-narrow > hr {

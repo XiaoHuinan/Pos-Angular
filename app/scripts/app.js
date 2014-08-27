@@ -31,6 +31,14 @@ angular
         templateUrl: 'views/list.html',
         controller: 'ListCtrl'
       })
+      .when('/cart', {
+        templateUrl: 'views/cart.html',
+        controller: 'CartCtrl'
+      })
+      .when('/payment', {
+        templateUrl: 'views/payment.html',
+        controller: 'PaymentCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
