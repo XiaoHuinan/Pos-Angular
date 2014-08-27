@@ -12,7 +12,11 @@ angular.module('posAngularApp')
         $scope.initialize = function () {
             Order.getPromotion();
             $scope.cartCount = Order.getCount();
-            $scope.boughtItems = _.values(Order.all());
+            $scope.boughtItems = _.chain(Order.all())
+                .values()
+                .filter(function (item) {
+                    return item.count > 0;
+                }).value();
             $scope.totalPrice = Order.totalPrice().toFixed(2) + '元';
             $scope.savePrice = Order.savePrice().toFixed(2) + '元';
         };
@@ -24,6 +28,9 @@ angular.module('posAngularApp')
 
         $scope.minusCount = function (barcode) {
             Order.all()[barcode].minusCount();
+            if($scope.cartCount == 1) {
+                $scope.go_to_list();
+            }
             $scope.initialize();
         };
 

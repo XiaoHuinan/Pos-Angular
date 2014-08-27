@@ -11,7 +11,11 @@ angular.module('posAngularApp')
     .controller('PaymentCtrl', function ($scope, $location) {
         $scope.initialize = function () {
             $scope.cartCount = Order.getCount();
-            $scope.boughtItems = _.values(Order.all());
+            $scope.boughtItems = _.chain(Order.all())
+                .values()
+                .filter(function (item) {
+                    return item.count > 0;
+                }).value();
             $scope.presentItems = _($scope.boughtItems).filter(function (item) {
                 return item.free() > 0;
             }).value();
