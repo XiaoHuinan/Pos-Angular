@@ -1,1 +1,63 @@
-<p>This is the cart view.</p>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" ng-click="go_home()">Let's Go</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a ng-click="go_home()">主页</a></li>
+                <li><a ng-click="go_to_list()">商品列表</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li class="active">
+                    <a ng-click="go_to_cart()">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>购物车 (<span>{{cartCount}}</span>)
+                    </a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container text-center">
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h4 class="side-space text-left">购物清单</h4>
+        </div>
+
+        <div class="panel-body">
+            <table id="bought-table" class="table table-bordered">
+                <tr>
+                    <th>分类</th><th>名称</th><th>单价(元)</th><th>单位</th><th>数量</th><th>小计</th>
+                </tr>
+                <tr ng-repeat="item in boughtItems">
+                    <td>{{item.type}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.unit}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn btn-default" ng-click="minusCount(item.barcode)">-</button>
+                            <button class="btn btn-default item-count" disabled="disabled">{{item.count}}</button>
+                            <button class="btn btn-default" ng-click="addCount(item.barcode)">+</button>
+                        </div>
+                    </td>
+                    <td>{{item.sumDisplay()}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="side-space text-right">
+            <p>总计：<span>{{totalPrice}}</span></p>
+            <p>节省：<span>{{savePrice}}</span></p>
+            <a class="btn btn-primary vertical-space" ng-click="go_to_payment()">付款</a>
+        </div>
+    </div>
+
+</div>

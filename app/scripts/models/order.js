@@ -28,7 +28,9 @@ Order.addItem = function (barcode) {
     item.addCount();
 };
 
-Order.getPromotion = function (items, promotions) {
+Order.getPromotion = function () {
+    var items = Order.all();
+    var promotions = loadPromotions();
     var two_with_one_list = _(promotions).findWhere({type: 'BUY_TWO_GET_ONE_FREE'}).barcodes;
     _(two_with_one_list).each(function (barcode) {
         var item = items[barcode];
@@ -38,13 +40,15 @@ Order.getPromotion = function (items, promotions) {
     }, this);
 };
 
-Order.totalPrice = function (items) {
+Order.totalPrice = function () {
+    var items = Order.all();
     return _(items).reduce(function (sum, item) {
         return sum + item.total();
     }, 0);
 };
 
-Order.savePrice = function (items) {
+Order.savePrice = function () {
+    var items = Order.all();
     return _(items).reduce(function (sum, item) {
         return sum + item.save();
     }, 0);
