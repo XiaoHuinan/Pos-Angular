@@ -1,1 +1,75 @@
-<p>This is the payment view.</p>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" ng-click="go_home()">Let's Go</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a ng-click="go_home()">主页</a></li>
+                <li><a ng-click="go_to_list()">商品列表</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a ng-click="go_to_cart()">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>购物车 (<span>{{cartCount}}</span>)
+                    </a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container text-center">
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h4 class="side-space text-left">购物清单</h4>
+        </div>
+
+        <div class="panel-body">
+            <p id="dateTime" class="text-left"></p>
+            <table id="bought-table" class="table table-bordered">
+                <tr>
+                    <th>分类</th><th>名称</th><th>单价(元)</th><th>单位</th><th>数量</th><th>小计</th>
+                </tr>
+                <tr ng-repeat="item in boughtItems">
+                    <td>{{item.type}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.unit}}</td>
+                    <td>{{item.count}}</td>
+                    <td>{{item.sumDisplay()}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="panel-heading">
+            <h4 class="side-space text-left">赠送商品</h4>
+        </div>
+
+        <div class="panel-body">
+            <table id="present-table" class="table table-bordered">
+                <tr>
+                    <th>分类</th><th>名称</th><th>数量</th>
+                </tr>
+                <tr ng-repeat="item in presentItems">
+                    <td>{{item.type}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.count}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="side-space text-right">
+            <p>总计：<span>{{totalPrice}}</span></p>
+            <p>节省：<span>{{savePrice}}</span></p>
+            <a id="confirm" class="btn btn-primary vertical-space" ng-click="confirm()">确认</a>
+        </div>
+    </div>
+
+</div>

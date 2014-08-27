@@ -17,10 +17,8 @@ Order.getCount = function () {
     }, 0);
 };
 
-Order.findByName = function (name) {
-    return _(Order.all()).find(function (item) {
-        return item.name == name;
-    });
+Order.clear = function () {
+    localStorage.boughtItems = JSON.stringify({});
 };
 
 Order.addItem = function (barcode) {
